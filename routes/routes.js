@@ -18,6 +18,9 @@ let routes = app => {
         .put(peoplesApi.addPerson)
         .delete(peoplesApi.removePerson);
 
+    app.route('/people/:id')
+       .get(peoplesApi.getPerson);
+
     /* PEOPLE ROUTE
      * ===================  */
 
