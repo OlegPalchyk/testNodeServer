@@ -6,9 +6,15 @@
 npm install -g nodemon
 ```
 
-And the run all dependencies
+### Install all dependencies
 
 ```
 npm i
+```
+
+### To start dev server
+
+```
+npm run dev
 ```
 
