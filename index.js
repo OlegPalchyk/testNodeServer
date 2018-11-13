@@ -2,7 +2,6 @@ import app from './app';
 const PORT = process.env.PORT || 5000;
 
 if (app.get('env') === 'development') {
-
     app.use(function(err, req, res, next) {
 
         res.status(err.status || 500);

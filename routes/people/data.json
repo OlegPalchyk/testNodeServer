@@ -1,0 +1,18 @@
+{
+  "list" : [
+    {
+      "id" : "0",
+      "name": "Lily",
+      "lastName": "Karpenko",
+      "phone": "0504144151",
+      "agree": true
+    },
+    {
+      "id" : "1",
+      "name": "Oleg",
+      "lastName": "Palchyk",
+      "phone": "0632834044",
+      "agree": true
+    }
+  ]
+}
