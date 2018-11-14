@@ -23,7 +23,6 @@ let routes = app => {
 
     /* PEOPLE ROUTE
      * ===================  */
-
 };
 
 export default routes;

@@ -1,5 +1,6 @@
 import peoples from './data.json';
 import Error from '../../DefaultError';
+const fs = require('fs');
 
 exports.getPeoplesList = (req, res) => {
   res.json({
@@ -24,7 +25,6 @@ exports.options = (req, res) => {
 };
 
 exports.addPerson = (req, res) => {
-  // Чисто проверка что бы не пустое пришло Боди
   if (!req.body) return Error(res, "no Body", 500);
   let item = req.body;
 
@@ -32,9 +32,15 @@ exports.addPerson = (req, res) => {
   if (!item.name) return Error(res, "Name is requires!", 404);
 
   // псевдо генератор рандомных ИД ( спизженый на просотрах гитхаба)
-  item.id = '_' + Math.random().toString(36).substr(2, 9);
+  item.id = peoples.list.length;
 
   peoples.list.push(item);
+
+  fs.writeFile('data.json', JSON.stringify(peoples), function(err) {
+    if (err) throw err;
+    console.log('complete add person');
+  });
+
   return res.json({item});
 };
 
