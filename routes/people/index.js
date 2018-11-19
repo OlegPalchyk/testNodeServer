@@ -14,13 +14,14 @@ exports.getPerson = ({ params: { id }}, res) => {
   return res.json({
     person: allUsers.find((item) => {
       return item.id === id;
-    })
+    }),
+    status: 200
   });
 };
 
 exports.options = (req, res) =>
   res.json({
-    "status": "OK"
+    status: 200
   });
 
 exports.addPerson = (req, res) => {
@@ -30,13 +31,20 @@ exports.addPerson = (req, res) => {
   // это кастомная проверка, можешь убрать, типа что какой то ключ обязательный
   if (!item.name) return Error(res, "Name is requires!", 404);
 
+  if (allUsers.find(({ id }) => (id == item.id))) {
+    return res.json({
+      reason: "User already exist, please use POST method"
+    });
+  }
+
   // псевдо генератор рандомных ИД ( спизженый на просотрах гитхаба)
   item.id = allUsers.length;
 
   allUsers.push(item);
 
   return res.json({
-    person: item
+    person: item,
+    status: 200
   });
 };
 
@@ -51,7 +59,10 @@ exports.removePerson = (req, res) => {
 
   allUsers.slice(indexOfItem, 1);
 
-  return res.json({"message": "removed"});
+  return res.json({
+    message: "removed",
+    status: 200
+  });
 };
 
 exports.updatePerson = (req, res) => {
@@ -66,6 +77,7 @@ exports.updatePerson = (req, res) => {
   allUsers[indexOfItem] = updatedItem;
 
   return res.json({
-    person: updatedItem
+    person: updatedItem,
+    status: 200
   });
 };
