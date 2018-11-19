@@ -4,13 +4,6 @@ import Error from '../../DefaultError';
 let allUsers = peoples.list;
 
 exports.getPeoplesList = (req, res) => {
-  res.statusCode = 200;
-
-  console.log(({
-    peoples,
-    status: 200
-  }));
-
   return res.json({
     peoples,
     status: 200
@@ -18,8 +11,6 @@ exports.getPeoplesList = (req, res) => {
 };
 
 exports.getPerson = ({ params: { id }}, res) => {
-  res.statusCode = 200;
-
   return res.json({
     person: allUsers.find((item) => {
       return item.id === id;
@@ -39,7 +30,6 @@ exports.addPerson = (req, res) => {
   // это кастомная проверка, можешь убрать, типа что какой то ключ обязательный
   if (!item.name) return Error(res, "Name is requires!", 404);
 
-  res.statusCode = 200;
   // псевдо генератор рандомных ИД ( спизженый на просотрах гитхаба)
   item.id = allUsers.length;
 
