@@ -14,7 +14,7 @@ let routes = app => {
     app.route('/people')
         .options(peoplesApi.options)
         .get(peoplesApi.getPeoplesList)
-        .post(peoplesApi.updatePerson)
+        .post(peoplesApi.addPerson)
         .put(peoplesApi.addPerson)
         .delete(peoplesApi.removePerson);
 
